@@ -1,4 +1,5 @@
 # depslib dependency file v1.0
-1436853666 source:/home/valseek/github/opengl1/main.cpp
+1436854883 source:/home/valseek/github/opengl1/main.cpp
+	<GL/glut.h>
 	<iostream>
 
