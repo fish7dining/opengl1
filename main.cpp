@@ -11,9 +11,22 @@ static GLfloat spin = 0.0;
 void display(void){
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
-    glRotatef(spin, 0.0, 0.0, 1.0);
+    glRotatef(spin, 1.0, 1.0, 1.0);
+
     glColor3f(1.0, 1.0, 1.0);
-    glRectf(-25.0, -25.0, 25.0, 25.0);
+    glBegin(GL_LINES);
+        glVertex3f(-15.0, 0.0, 0.0);
+        glVertex3f(40.0, 0.0, 0.0);
+    glEnd();
+    glBegin(GL_LINES);
+        glVertex3f(0.0, -15.0, 0.0);
+        glVertex3f(0.0, 40.0, 0.0);
+    glEnd();
+    glBegin(GL_LINES);
+        glVertex3f(0.0, 0.0, -15.0);
+        glVertex3f(0.0, 0.0, 40.0);
+    glEnd();
+
     glPopMatrix();
     glutSwapBuffers();
 }
@@ -34,9 +47,10 @@ void reshape(int w, int h){
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1.0);
+    glOrtho(-50.0, 50.0, -50.0, 50.0, 1.0, 99.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    gluLookAt(0.0, 0.0, 51.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
 void mouse(int button, int state, int x, int y){
