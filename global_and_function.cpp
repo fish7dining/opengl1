@@ -9,22 +9,28 @@ using namespace std;
 /*
     全局变量定义处
 */
-GLfloat spin = 0.0;  //旋转角度
-
-
-
+GLfloat SPIN = 0.0;
+GLfloat COLOR_BLACK[3] = {0.0, 0.0, 0.0};
+GLfloat COLOR_WHITE[3] = {1.0, 1.0, 1.0};
+GLfloat COLOR_RED[3] = {1.0, 0.0, 0.0};
+GLfloat COLOR_GREEN[3] = {0.0, 1.0, 0.0};
+GLfloat COLOR_BLUE[3] = {0.0, 0.0, 1.0};
+GLfloat COLOR_YELLOW[3] = {1.0, 1.0, 0.0};
+GLfloat AXIS_LEN = 70.0;
+float PI = 3.1415926;
+float n_pyramid_r = 4.0;
+float n_pyramid_h = 10.0;
 
 
 /*
     全局函数定义处
 */
-//初始化
+
 void init(void){
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_SMOOTH);
 }
 
-//鼠标操作
 void mouse(int button, int state, int x, int y){
     switch (button) {
         case GLUT_LEFT_BUTTON:
@@ -42,7 +48,6 @@ void mouse(int button, int state, int x, int y){
     }
 }
 
-//键盘
 void keyboard(unsigned char key,int x,int y){
     switch(key){
         case 'a':
@@ -56,22 +61,23 @@ void keyboard(unsigned char key,int x,int y){
     }
 }
 
-//窗口改变
 void reshape(int w, int h){
-    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+    int t = min (w,h);
+    glViewport (0, 0,  t, t);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-100.0, 100.0, -100.0, 100.0, 1.0, 201.0);
+    float ts = (float)t;
+    cout<<ts<<endl;
+    glOrtho(-ts/2, ts/2, -ts/2, ts, 0.0, ts);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(0.0, 0.0, 101.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(0.0, 0.0, ts/2, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
-//旋转
 void spinDisplay(void){
-    spin = spin + 2.0;
-    if (spin > 360.0)
-        spin = spin - 360.0;
+    SPIN = SPIN + 2.0;
+    if (SPIN > 360.0)
+        SPIN = SPIN - 360.0;
     glutPostRedisplay();
 }
 

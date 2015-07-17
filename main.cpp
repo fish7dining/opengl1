@@ -3,82 +3,69 @@
 #include "function.h"
 #include "iostream"
 #include "stdio.h"
+#include "math.h"
 using namespace std;
 
 
 
 
-void typex(float L1){
-    glColor3f(0.0, 1.0, 0.0);
-    glLineWidth(2.0);
-    glBegin(GL_LINES);
-        glVertex3f(0.0, L1, L1);
-        glVertex3f(0.0, -L1, -L1);
-    glEnd();
-    glBegin(GL_LINES);
-        glVertex3f(0.0, L1, -L1);
-        glVertex3f(0.0, -L1, L1);
-    glEnd();
+void draw_n_pyramid(int n){
+    float temp1 = 2*PI/n;
+
+    for(int i=0;i<n;++i){
+        glBegin(GL_TRIANGLES);
+            glVertex3f( n_pyramid_r*cos(temp1*i), n_pyramid_r*sin(temp1*i), 0.0 );
+            glVertex3f( n_pyramid_r*cos(temp1*(i+1)), n_pyramid_r*sin(temp1*(i+1)), 0.0 );
+            glVertex3f( 0.0, 0.0, n_pyramid_h );
+        glEnd();
+    }
 }
-void typey(float L1){
-    glColor3f(0.0, 1.0, 0.0);
-    glLineWidth(2.0);
-    glBegin(GL_LINE_STRIP);
-        glVertex3f(-L1, 0.0, -L1);
-        glVertex3f(0.0, 0.0, 0.0);
-        glVertex3f(L1, 0.0, -L1);
-    glEnd();
-    glBegin(GL_LINES);
-        glVertex3f(0.0, 0.0, 0.0);
-        glVertex3f(0.0, 0.0, L1);
-    glEnd();
-}
-void typez(float L1){
-    glColor3f(0.0, 1.0, 0.0);
-    glLineWidth(2.0);
-    glBegin(GL_LINE_STRIP);
-        glVertex3f(-L1, L1, 0.0);
-        glVertex3f(L1, L1, 0.0);
-        glVertex3f(-L1, -L1, 0.0);
-        glVertex3f(L1, -L1, 0.0);
-    glEnd();
-}
+
+
 void xyzAxis(void){
 
     //x axis
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3fv(COLOR_WHITE);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(-35.0, 0.0, 0.0);
-        glVertex3f(70.0, 0.0, 0.0);
+        glVertex3f(-AXIS_LEN/2, 0.0, 0.0);
+        glVertex3f(AXIS_LEN, 0.0, 0.0);
     glEnd();
     glPushMatrix();
-        glTranslatef(70.0, 0.0, 0.0);
-        typex(3.0);
+        glTranslatef(AXIS_LEN, 0.0, 0.0);
+        glRotatef(90.0, 0.0, 1.0, 0.0);
+        glLineWidth(1.0);
+        glColor3fv(COLOR_RED);
+        draw_n_pyramid(10);
     glPopMatrix();
 
     //y axis
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3fv(COLOR_WHITE);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(0.0, -35.0, 0.0);
-        glVertex3f(0.0, 70.0, 0.0);
+        glVertex3f(0.0, -AXIS_LEN/2, 0.0);
+        glVertex3f(0.0, AXIS_LEN, 0.0);
     glEnd();
     glPushMatrix();
-        glTranslatef(0.0, 70.0, 0.0);
-        typey(3.0);
+        glTranslatef(0.0, AXIS_LEN, 0.0);
+        glRotatef(90.0, -1.0, 0.0, 0.0);
+        glLineWidth(1.0);
+        glColor3fv(COLOR_BLUE);
+        draw_n_pyramid(10);
     glPopMatrix();
 
     //z axis
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3fv(COLOR_WHITE);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(0.0, 0.0, -35.0);
-        glVertex3f(0.0, 0.0, 70.0);
+        glVertex3f(0.0, 0.0, -AXIS_LEN/2);
+        glVertex3f(0.0, 0.0, AXIS_LEN);
     glEnd();
     glPushMatrix();
-        glTranslatef(0.0, 0.0, 70.0);
-        typez(3.0);
+        glTranslatef(0.0, 0.0, AXIS_LEN);
+        glLineWidth(1.0);
+        glColor3fv(COLOR_YELLOW);
+        draw_n_pyramid(10);
     glPopMatrix();
 }
 
@@ -86,7 +73,7 @@ void xyzAxis(void){
 void display(void){
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
-    glRotatef(spin, 1.0, 1.0, 1.0);
+    glRotatef(SPIN, 1.0, 1.0, 1.0);
 
     xyzAxis();
 
@@ -103,8 +90,8 @@ int main(int argc, char** argv)
 {
    glutInit(&argc, argv);
    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
-   glutInitWindowSize (500, 500);
-   glutInitWindowPosition (100, 100);
+   glutInitWindowSize (700, 700);
+   glutInitWindowPosition (0, 0);
    glutCreateWindow (argv[0]);
    init ();
    glutDisplayFunc(display);

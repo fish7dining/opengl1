@@ -1,17 +1,24 @@
 # depslib dependency file v1.0
-1437136875 source:/home/valseek/github/opengl1/main.cpp
+1437141856 source:/home/valseek/github/opengl1/main.cpp
 	"GL/glut.h"
 	"global.h"
 	"function.h"
 	"iostream"
 	"stdio.h"
+	"math.h"
 
 1437136337 source:/home/valseek/github/opengl1/function.cpp
 	"function.h"
 	"GL/glut.h"
 
-1437136870 /home/valseek/github/opengl1/function.h
+1437138454 /home/valseek/github/opengl1/function.h
 
-1437136785 /home/valseek/github/opengl1/global.h
+1437141466 /home/valseek/github/opengl1/global.h
 	"GL/glut.h"
+
+1437141969 source:/home/valseek/github/opengl1/global_and_function.cpp
+	"function.h"
+	"global.h"
+	"GL/glut.h"
+	"iostream"
 
