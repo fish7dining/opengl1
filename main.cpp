@@ -1,9 +1,11 @@
-#include <GL/glut.h>
-#include <iostream>
-#include <stdio.h>
+#include "GL/glut.h"
+#include "global.h"
+#include "function.h"
+#include "iostream"
+#include "stdio.h"
 using namespace std;
 
-static GLfloat spin = 0.0;
+
 
 
 void typex(float L1){
@@ -47,11 +49,11 @@ void xyzAxis(void){
     glColor3f(1.0, 1.0, 1.0);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(-15.0, 0.0, 0.0);
-        glVertex3f(40.0, 0.0, 0.0);
+        glVertex3f(-35.0, 0.0, 0.0);
+        glVertex3f(70.0, 0.0, 0.0);
     glEnd();
     glPushMatrix();
-        glTranslatef(40.0, 0.0, 0.0);
+        glTranslatef(70.0, 0.0, 0.0);
         typex(3.0);
     glPopMatrix();
 
@@ -59,11 +61,11 @@ void xyzAxis(void){
     glColor3f(1.0, 1.0, 1.0);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(0.0, -15.0, 0.0);
-        glVertex3f(0.0, 40.0, 0.0);
+        glVertex3f(0.0, -35.0, 0.0);
+        glVertex3f(0.0, 70.0, 0.0);
     glEnd();
     glPushMatrix();
-        glTranslatef(0.0, 40.0, 0.0);
+        glTranslatef(0.0, 70.0, 0.0);
         typey(3.0);
     glPopMatrix();
 
@@ -71,15 +73,16 @@ void xyzAxis(void){
     glColor3f(1.0, 1.0, 1.0);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(0.0, 0.0, -15.0);
-        glVertex3f(0.0, 0.0, 40.0);
+        glVertex3f(0.0, 0.0, -35.0);
+        glVertex3f(0.0, 0.0, 70.0);
     glEnd();
     glPushMatrix();
-        glTranslatef(0.0, 0.0, 40.0);
+        glTranslatef(0.0, 0.0, 70.0);
         typez(3.0);
     glPopMatrix();
 }
 
+//开始绘制
 void display(void){
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
@@ -91,54 +94,9 @@ void display(void){
     glutSwapBuffers();
 }
 
-void spinDisplay(void){
-    spin = spin + 2.0;
-    if (spin > 360.0)
-        spin = spin - 360.0;
-    glutPostRedisplay();
-}
 
-void init(void){
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glShadeModel(GL_SMOOTH);
-}
 
-void reshape(int w, int h){
-    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-50.0, 50.0, -50.0, 50.0, 1.0, 101.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(0.0, 0.0, 51.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-}
 
-void mouse(int button, int state, int x, int y){
-    switch (button) {
-        case GLUT_LEFT_BUTTON:
-            if (state == GLUT_DOWN)
-            glutIdleFunc(spinDisplay);
-            break;
-        case GLUT_MIDDLE_BUTTON:
-            break;
-        case GLUT_RIGHT_BUTTON:
-            if (state == GLUT_DOWN)
-                glutIdleFunc(NULL);
-            break;
-        default:
-            break;
-    }
-}
-void keyboard(unsigned char key,int x,int y){
-    switch(key){
-        case 'a':
-            break;
-        case 'b':
-            break;
-        default:
-            break;
-    }
-}
 
 
 int main(int argc, char** argv)
