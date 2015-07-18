@@ -9,58 +9,9 @@ using namespace std;
 
 
 
-void draw_a_cube(float c_up[3],float c_down[3],float c_front[3],float c_back[3],float c_left[3],float c_right[3]){
-    glColor3fv(c_up);
-    glBegin(GL_QUADS);
-        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-    glEnd();
-
-    glColor3fv(c_down);
-    glBegin(GL_QUADS);
-        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
-    glEnd();
-
-    glColor3fv(c_front);
-    glBegin(GL_QUADS);
-        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-    glEnd();
-
-    glColor3fv(c_back);
-    glBegin(GL_QUADS);
-        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
-    glEnd();
-
-    glColor3fv(c_left);
-    glBegin(GL_QUADS);
-        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-    glEnd();
-
-    glColor3fv(c_right);
-    glBegin(GL_QUADS);
-        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
-        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
-    glEnd();
-
-
+void draw_a_cube(float c_up[4],float c_down[4],float c_front[4],float c_back[4],float c_left[4],float c_right[4]){
     glLineWidth(3.0);
-    glColor3fv(COLOR_BLACK);
+    glColor4fv(COLOR_BLACK);
     glBegin(GL_LINE_LOOP);
         glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
         glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
@@ -102,14 +53,59 @@ void draw_a_cube(float c_up[3],float c_down[3],float c_front[3],float c_back[3],
         glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
         glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
     glEnd();
+
+
+
+
+
+    glBegin(GL_QUADS);
+        glColor4fv(c_up);
+        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glColor4fv(COLOR_BLACK);
+        glColor4fv(c_down);
+        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+
+        glColor4fv(c_front);
+        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+
+        glColor4fv(c_back);
+        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+
+        glColor4fv(c_left);
+        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+
+        glColor4fv(c_right);
+        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+        glVertex3f(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+    glEnd();
+
+
+
 }
 
 void draw_MagicCube(int ope,float angel){
     if(fabs(angel)==0.0 || fabs(angel-90.0)==0.0){
-        glPushMatrix();
         glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
         draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
-        glPopMatrix();
+        glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+        draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_OF_CUBE[1][3]);
     }
 }
 
@@ -119,8 +115,8 @@ void display(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
-    glTranslatef(-AXIS_LEN, -AXIS_LEN, AXIS_LEN);
-    typeXYZ();
+        glTranslatef(-AXIS_LEN, -AXIS_LEN, AXIS_LEN);
+        typeXYZ();
     glPopMatrix();
 
 
@@ -128,7 +124,7 @@ void display(void){
 
 
     glPushMatrix();
-    glRotatef(SPIN, 1.0, 1.0, 1.0);
+    glRotatef(SPIN, 0.0, 1.0, 0.0);
     //----------------------------------------
 
     glPushMatrix();
@@ -142,8 +138,8 @@ void display(void){
 
     //----------------------------------------
     glPopMatrix();
-    glutSwapBuffers();
     glFlush();
+    glutSwapBuffers();
 }
 
 

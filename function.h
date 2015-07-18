@@ -13,7 +13,7 @@ void draw_n_pyramid(int n);  //画立锥体
 void xyzAxis(void);  //画三维坐标轴
 void typeXYZ();  //画三维坐标系XYZ标语
 void init2(void);
-void q1(int x,int y,float color[3]);
+void q1(int x,int y,float color[4]);
 
 
 #endif // FUNCTION_H_INCLUDED
