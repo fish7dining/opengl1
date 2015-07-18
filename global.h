@@ -18,6 +18,8 @@ extern float PI;
 extern float n_pyramid_r;  //圆锥体底部的正多边形的半径
 extern float n_pyramid_h;  //圆锥体的高度
 extern float X_Y_Z_LEN;  //X Y Z三个字母的的边长
+extern float A_CUBE_LEN;  //二阶魔角块的边长
 
+extern GLfloat COLOR_OF_CUBE[9][4][3];  //储存二阶魔方顔色信息
 
 #endif // GLOBAL_H_INCLUDED

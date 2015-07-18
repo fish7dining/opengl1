@@ -14,14 +14,18 @@ GLfloat SPIN = 0.0;
 GLfloat COLOR_BLACK[3] = {0.0, 0.0, 0.0};
 GLfloat COLOR_WHITE[3] = {1.0, 1.0, 1.0};
 GLfloat COLOR_RED[3] = {1.0, 0.0, 0.0};
-GLfloat COLOR_GREEN[3] = {0.0, 1.0, 0.0};
-GLfloat COLOR_BLUE[3] = {0.0, 0.0, 1.0};
 GLfloat COLOR_YELLOW[3] = {1.0, 1.0, 0.0};
-GLfloat AXIS_LEN = 70.0;
+GLfloat COLOR_BLUE[3] = {0.0, 0.0, 1.0};
+GLfloat COLOR_GREEN[3] = {0.0, 1.0, 0.0};
+GLfloat COLOR_ORANGE[3] = {1.0, 0.647, 0.0};
+GLfloat AXIS_LEN = 80.0;
 float PI = 3.1415926;
 float n_pyramid_r = 4.0;
 float n_pyramid_h = 10.0;
 float X_Y_Z_LEN = 5.0;
+float A_CUBE_LEN = 30.0;
+
+GLfloat COLOR_OF_CUBE[9][4][3];
 
 
 
@@ -35,12 +39,30 @@ float X_Y_Z_LEN = 5.0;
 */
 
 void init(void){
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(1.0, 1.0, 1.0, 0.0);
     glShadeModel(GL_SMOOTH);
-    glClearDepth(1.0f);
+    glClearDepth(1.0);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glFrontFace(GL_CCW);
+    init2();
+}
+
+//给某个角块的某个方向赋值上颜色（数据结构）
+void q1(int x,int y,float color[3]){
+    for(int i=0;i<3;++i)
+        COLOR_OF_CUBE[x][y][i] = color[i];
+}
+
+void init2(void){
+    q1(1,1,COLOR_RED); q1(1,2,COLOR_BLUE); q1(1,3,COLOR_YELLOW);
+    q1(2,1,COLOR_ORANGE); q1(2,2,COLOR_BLUE); q1(2,3,COLOR_YELLOW);
+    q1(3,1,COLOR_ORANGE); q1(3,2,COLOR_BLUE); q1(3,3,COLOR_WHITE);
+    q1(4,1,COLOR_RED); q1(4,2,COLOR_BLUE); q1(4,3,COLOR_WHITE);
+    q1(5,1,COLOR_RED); q1(5,2,COLOR_GREEN); q1(5,3,COLOR_YELLOW);
+    q1(6,1,COLOR_ORANGE); q1(6,2,COLOR_GREEN); q1(6,3,COLOR_YELLOW);
+    q1(7,1,COLOR_ORANGE); q1(7,2,COLOR_GREEN); q1(7,3,COLOR_WHITE);
+    q1(8,1,COLOR_RED); q1(8,2,COLOR_GREEN); q1(8,3,COLOR_WHITE);
 }
 
 void mouse(int button, int state, int x, int y){
@@ -111,10 +133,10 @@ void draw_n_pyramid(int n){
 void xyzAxis(void){
 
     //x axis
-    glColor3fv(COLOR_WHITE);
+    glColor3fv(COLOR_BLACK);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(-AXIS_LEN/2, 0.0, 0.0);
+        glVertex3f(-AXIS_LEN*2/3, 0.0, 0.0);
         glVertex3f(AXIS_LEN, 0.0, 0.0);
     glEnd();
     glPushMatrix();
@@ -126,25 +148,25 @@ void xyzAxis(void){
     glPopMatrix();
 
     //y axis
-    glColor3fv(COLOR_WHITE);
+    glColor3fv(COLOR_BLACK);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(0.0, -AXIS_LEN/2, 0.0);
+        glVertex3f(0.0, -AXIS_LEN*2/3, 0.0);
         glVertex3f(0.0, AXIS_LEN, 0.0);
     glEnd();
     glPushMatrix();
         glTranslatef(0.0, AXIS_LEN, 0.0);
         glRotatef(90.0, -1.0, 0.0, 0.0);
         glLineWidth(1.0);
-        glColor3fv(COLOR_YELLOW);
+        glColor3fv(COLOR_GREEN);
         draw_n_pyramid(10);
     glPopMatrix();
 
     //z axis
-    glColor3fv(COLOR_WHITE);
+    glColor3fv(COLOR_BLACK);
     glLineWidth(2.0);
     glBegin(GL_LINES);
-        glVertex3f(0.0, 0.0, -AXIS_LEN/2);
+        glVertex3f(0.0, 0.0, -AXIS_LEN*2/3);
         glVertex3f(0.0, 0.0, AXIS_LEN);
     glEnd();
     glPushMatrix();
@@ -166,7 +188,7 @@ void typeXYZ(){
     glEnd();
 
     glTranslatef(2*X_Y_Z_LEN+X_Y_Z_LEN/2, 0.0, 0.0);
-    glColor3fv(COLOR_YELLOW);
+    glColor3fv(COLOR_GREEN);
     glBegin(GL_LINES);
         glVertex3f(-X_Y_Z_LEN, X_Y_Z_LEN, 0.0);
         glVertex3f(0.0, 0.0, 0.0);
