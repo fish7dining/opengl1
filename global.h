@@ -17,7 +17,7 @@ extern GLfloat AXIS_LEN;  //坐标轴正部分长度
 extern float PI;
 extern float n_pyramid_r;  //圆锥体底部的正多边形的半径
 extern float n_pyramid_h;  //圆锥体的高度
-
+extern float X_Y_Z_LEN;  //X Y Z三个字母的的边长
 
 
 #endif // GLOBAL_H_INCLUDED

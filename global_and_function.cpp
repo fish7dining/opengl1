@@ -20,6 +20,13 @@ GLfloat AXIS_LEN = 70.0;
 float PI = 3.1415926;
 float n_pyramid_r = 4.0;
 float n_pyramid_h = 10.0;
+float X_Y_Z_LEN = 5.0;
+
+
+
+
+
+
 
 
 /*
@@ -29,6 +36,10 @@ float n_pyramid_h = 10.0;
 void init(void){
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_SMOOTH);
+    glClearDepth(1.0f);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glFrontFace(GL_CCW);
 }
 
 void mouse(int button, int state, int x, int y){
@@ -67,11 +78,10 @@ void reshape(int w, int h){
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     float ts = (float)t;
-    cout<<ts<<endl;
-    glOrtho(-ts/2, ts/2, -ts/2, ts, 0.0, ts);
+    glOrtho(-100, 100, -100, 100, 0.0, 200);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(0.0, 0.0, ts/2, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
 void spinDisplay(void){
