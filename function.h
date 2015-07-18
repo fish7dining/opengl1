@@ -9,7 +9,9 @@ void mouse(int button, int state, int x, int y);  //鼠标操作
 void keyboard(unsigned char key,int x,int y);  //键盘
 void reshape(int w,int h);  //窗口改变
 void spinDisplay(void);  //旋转
-
+void draw_n_pyramid(int n);  //画立锥体
+void xyzAxis(void);  //画三维坐标轴
+void typeXYZ();  //画三维坐标系XYZ标语
 
 
 
