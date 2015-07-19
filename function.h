@@ -14,6 +14,7 @@ void xyzAxis(void);  //画三维坐标轴
 void typeXYZ();  //画三维坐标系XYZ标语
 void init2(void);
 void q1(int x,int y,float color[4]);
+void cube_rotate_Display(void);
 
 
 #endif // FUNCTION_H_INCLUDED

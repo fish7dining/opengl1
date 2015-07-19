@@ -105,9 +105,55 @@ void draw_MagicCube(int ope,float angel){
         glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
         draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
         glTranslatef(0.0, 0.0, -A_CUBE_LEN);
-        draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_OF_CUBE[1][3]);
+        draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
+        glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+        draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
+        glTranslatef(0.0, 0.0, A_CUBE_LEN);
+        draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[1][4], COLOR_WHITE);
+
+        glTranslatef(A_CUBE_LEN, -A_CUBE_LEN, 0.0);
+        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
+        glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
+        glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
+        glTranslatef(0.0, 0.0, A_CUBE_LEN);
+        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+    }
+    else{
+        switch(ope){
+        case 1:  //U cw
+            glPushMatrix();
+                glRotatef(angel, 0.0, 1.0, 0.0);
+                glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+                draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
+                glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+                draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
+                glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+                draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
+                glTranslatef(0.0, 0.0, A_CUBE_LEN);
+                draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[1][4], COLOR_WHITE);
+            glPopMatrix();
+
+            glTranslatef(A_CUBE_LEN, -A_CUBE_LEN, 0.0);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
+            glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
+            glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
+            glTranslatef(0.0, 0.0, A_CUBE_LEN);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+            break;
+        case 2:  //F cw
+            break;
+        case 3:  //R cw
+            break;
+        default:
+            break;
+        }
     }
 }
+
 
 
 //开始绘制
@@ -115,7 +161,7 @@ void display(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
-        glTranslatef(-AXIS_LEN, -AXIS_LEN, AXIS_LEN);
+        glTranslatef(-AXIS_LEN*4/5, -AXIS_LEN*4/5, AXIS_LEN*4/5);
         typeXYZ();
     glPopMatrix();
 
@@ -131,7 +177,7 @@ void display(void){
         xyzAxis();
     glPopMatrix();
     glPushMatrix();
-        draw_MagicCube(1, 0.0);
+        draw_MagicCube(1, CUBE_NOW_ROTATE_ANGEL);
     glPopMatrix();
 
 
@@ -144,6 +190,39 @@ void display(void){
 
 
 
+void keyboard(unsigned char key,int x,int y){
+    switch(key){
+        case 'a':
+            cout<<'U1'<<endl;
+            break;
+        case 'b':
+            cout<<'U2'<<endl;
+            break;
+        case 'c':
+            cout<<'U3'<<endl;
+            break;
+        case 'd':
+            cout<<'F1'<<endl;
+            break;
+        case 'e':
+            cout<<'F2'<<endl;
+            break;
+        case 'f':
+            cout<<'F3'<<endl;
+            break;
+        case 'g':
+            cout<<'R1'<<endl;
+            break;
+        case 'h':
+            cout<<'R2'<<endl;
+            break;
+        case 'i':
+            cout<<'R3'<<endl;
+            break;
+        default:
+            break;
+    }
+}
 
 
 

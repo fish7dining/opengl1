@@ -19,6 +19,9 @@ extern float n_pyramid_r;  //圆锥体底部的正多边形的半径
 extern float n_pyramid_h;  //圆锥体的高度
 extern float X_Y_Z_LEN;  //X Y Z三个字母的的边长
 extern float A_CUBE_LEN;  //二阶魔角块的边长
+extern float CUBE_PER_ROTATE_ANGEL;  //每次旋转的角度
+extern float CUBE_NOW_ROTATE_ANGEL;  //当前旋转的角度
+
 
 extern GLfloat COLOR_OF_CUBE[9][4][4];  //储存二阶魔方顔色信息
 

@@ -24,6 +24,8 @@ float n_pyramid_r = 4.0;
 float n_pyramid_h = 10.0;
 float X_Y_Z_LEN = 5.0;
 float A_CUBE_LEN = 30.0;
+float CUBE_PER_ROTATE_ANGEL = 2.0;
+float CUBE_NOW_ROTATE_ANGEL = 0.0;
 
 GLfloat COLOR_OF_CUBE[9][4][4];
 
@@ -84,25 +86,14 @@ void mouse(int button, int state, int x, int y){
     }
 }
 
-void keyboard(unsigned char key,int x,int y){
-    switch(key){
-        case 'a':
-            cout<<'a'<<endl;
-            break;
-        case 'b':
-            cout<<'b'<<endl;
-            break;
-        default:
-            break;
-    }
-}
+
+
 
 void reshape(int w, int h){
     int t = min (w,h);
     glViewport (0, 0,  t, t);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    float ts = (float)t;
     glOrtho(-100, 100, -100, 100, 0.0, 200);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -113,6 +104,13 @@ void spinDisplay(void){
     SPIN = SPIN + 2.0;
     if (SPIN > 360.0)
         SPIN = SPIN - 360.0;
+    glutPostRedisplay();
+}
+
+void cube_rotate_Display(void){
+    CUBE_NOW_ROTATE_ANGEL = CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
+    if(CUBE_NOW_ROTATE_ANGEL > 180.0)
+        CUBE_NOW_ROTATE_ANGEL = CUBE_NOW_ROTATE_ANGEL - 180.0;
     glutPostRedisplay();
 }
 
