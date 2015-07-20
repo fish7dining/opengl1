@@ -162,14 +162,7 @@ void display(){
 
 
 
-void a_90_degree(int angel){
-    glutPostRedisplay();
-    angel += CUBE_PER_ROTATE_ANGEL;
-    CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
-    if( fabs(angel)<=90.0 ){
-        glutTimerFunc(30, a_90_degree, angel);
-    }
-}
+
 
 void tempToA(float temp[4], int x, int y){ // move temp -> color(x,y)
     COLOR_OF_CUBE[x][y][0] = temp[0];
@@ -195,13 +188,28 @@ void a_up_90_degree_color_change(){
     float t1[4], t2[4], t3[4];
     ATotemp(1, 1, t1);  ATotemp(1, 2, t2);  ATotemp(1, 3, t3);
     AToA(2, 3, 1, 1);  AToA(2, 2, 1, 2);  AToA(2, 1, 1, 3);
-    AToA(3, 3, 2, 1);  AToA(3, 2, 2, 2);  AToA(3, 1, 3, 3);
+    AToA(3, 3, 2, 1);  AToA(3, 2, 2, 2);  AToA(3, 1, 2, 3);
     AToA(4, 3, 3, 1);  AToA(4, 2, 3, 2);  AToA(4, 1, 3, 3);
     tempToA(t1, 4, 3);  tempToA(t2, 4, 2);  tempToA(t3, 4, 1);
 }
 
+void a_90_degree(int angel){
+    glutPostRedisplay();
+    angel += CUBE_PER_ROTATE_ANGEL;
+    CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
+    if( fabs(angel)<90.0 ){
+        glutTimerFunc(10, a_90_degree, angel);
+    }
+    else{
+        a_up_90_degree_color_change();
+        glutPostRedisplay();
+    }
+}
+
+
 //rotate cw 90 degrees
 void rot1(int kind){ //1:up 2:front 3:right
+
     CUBE_NOW_ROTATE_ANGEL = 0.0;
     switch( kind ){
         case 1:
@@ -217,22 +225,6 @@ void rot1(int kind){ //1:up 2:front 3:right
             break;
     }
     glutTimerFunc(30, a_90_degree, 0.0);
-    switch( kind ){
-    case 1:
-        a_up_90_degree_color_change();
-        break;
-    case 2:
-        a_up_90_degree_color_change();
-        a_up_90_degree_color_change();
-        break;
-    case 3:
-        a_up_90_degree_color_change();
-        a_up_90_degree_color_change();
-        a_up_90_degree_color_change();
-        break;
-    default:
-        break;
-    }
 }
 
 //rotate cw 180 degrees
@@ -319,6 +311,7 @@ void keyboard(unsigned char key,int x,int y){
             break;
     }
 }
+
 
 
 int main(int argc, char** argv){

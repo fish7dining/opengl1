@@ -28,6 +28,8 @@ float CUBE_PER_ROTATE_ANGEL = 2.0;
 float CUBE_NOW_ROTATE_ANGEL = 0.0;
 int WHICH_ROTATION = 1;
 
+
+
 GLfloat COLOR_OF_CUBE[9][4][4];
 
 

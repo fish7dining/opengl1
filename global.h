@@ -23,6 +23,7 @@ extern float CUBE_PER_ROTATE_ANGEL;  //每次旋转的角度
 extern float CUBE_NOW_ROTATE_ANGEL;  //当前旋转的角度
 extern int WHICH_ROTATION;
 
+
 extern GLfloat COLOR_OF_CUBE[9][4][4];  //储存二阶魔方顔色信息
 
 #endif // GLOBAL_H_INCLUDED
