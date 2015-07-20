@@ -13,10 +13,10 @@
 
 1437275941 /home/valseek/github/opengl1/function.h
 
-1437274707 /home/valseek/github/opengl1/global.h
+1437378032 /home/valseek/github/opengl1/global.h
 	"GL/glut.h"
 
-1437306771 source:/home/valseek/github/opengl1/global_and_function.cpp
+1437382735 source:/home/valseek/github/opengl1/global_and_function.cpp
 	"function.h"
 	"global.h"
 	"GL/glut.h"

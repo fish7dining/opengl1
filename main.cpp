@@ -101,65 +101,37 @@ void draw_a_cube(float c_up[4],float c_down[4],float c_front[4],float c_back[4],
 }
 
 void draw_MagicCube(int ope,float angel){
-    if(fabs(angel)==0.0 || fabs(angel-90.0)==0.0){
-        glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-        draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
-        glTranslatef(0.0, 0.0, -A_CUBE_LEN);
-        draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
-        glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
-        draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
-        glTranslatef(0.0, 0.0, A_CUBE_LEN);
-        draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[1][4], COLOR_WHITE);
 
-        glTranslatef(A_CUBE_LEN, -A_CUBE_LEN, 0.0);
-        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
-        glTranslatef(0.0, 0.0, -A_CUBE_LEN);
-        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
-        glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
-        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
-        glTranslatef(0.0, 0.0, A_CUBE_LEN);
-        draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
-    }
-    else{
-        switch(ope){
-        case 1:  //U cw
-            glPushMatrix();
-                glRotatef(angel, 0.0, 1.0, 0.0);
-                glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
-                draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
-                glTranslatef(0.0, 0.0, -A_CUBE_LEN);
-                draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
-                glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
-                draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
-                glTranslatef(0.0, 0.0, A_CUBE_LEN);
-                draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE);
-            glPopMatrix();
+    if( ope==1 || ope==2 || ope==3 ){
+        glPushMatrix();
+            glRotatef(angel, 0.0, 1.0, 0.0);
+            glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
+            glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+            draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
+            glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+            draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
+            glTranslatef(0.0, 0.0, A_CUBE_LEN);
+            draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE);
+        glPopMatrix();
 
-            glPushMatrix();
-                glTranslatef(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
-                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
-                glTranslatef(0.0, 0.0, -A_CUBE_LEN);
-                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
-                glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
-                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
-                glTranslatef(0.0, 0.0, A_CUBE_LEN);
-                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
-            glPopMatrix();
-            break;
-        case 2:  //F cw
-            break;
-        case 3:  //R cw
-            break;
-        default:
-            break;
-        }
+        glPushMatrix();
+            glTranslatef(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
+            glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
+            glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
+            glTranslatef(0.0, 0.0, A_CUBE_LEN);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+        glPopMatrix();
     }
 }
 
 
 
 //开始绘制
-void display(void){
+void display(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
@@ -175,7 +147,7 @@ void display(void){
         xyzAxis();
     glPopMatrix();
     glPushMatrix();
-        draw_MagicCube(1, CUBE_NOW_ROTATE_ANGEL);
+        draw_MagicCube(WHICH_ROTATION, CUBE_NOW_ROTATE_ANGEL);
     glPopMatrix();
 
     //----------------------------------------
@@ -199,53 +171,148 @@ void a_90_degree(int angel){
     }
 }
 
+void tempToA(float temp[4], int x, int y){ // move temp -> color(x,y)
+    COLOR_OF_CUBE[x][y][0] = temp[0];
+    COLOR_OF_CUBE[x][y][1] = temp[1];
+    COLOR_OF_CUBE[x][y][2] = temp[2];
+    COLOR_OF_CUBE[x][y][3] = temp[3];
+}
 
-void U1(){
+void ATotemp(int x, int y, float temp[4]){
+    temp[0] = COLOR_OF_CUBE[x][y][0];
+    temp[1] = COLOR_OF_CUBE[x][y][1];
+    temp[2] = COLOR_OF_CUBE[x][y][2];
+    temp[3] = COLOR_OF_CUBE[x][y][3];
+}
+
+void AToA(int x1, int y1, int x2, int y2){ // move color(x1,y1) -> color(x2,y2)
+    float temps[4];
+    ATotemp(x1, y1, temps);
+    tempToA(temps, x2, y2);
+}
+
+void a_up_90_degree_color_change(){
+    float t1[4], t2[4], t3[4];
+    ATotemp(1, 1, t1);  ATotemp(1, 2, t2);  ATotemp(1, 3, t3);
+    AToA(2, 3, 1, 1);  AToA(2, 2, 1, 2);  AToA(2, 1, 1, 3);
+    AToA(3, 3, 2, 1);  AToA(3, 2, 2, 2);  AToA(3, 1, 3, 3);
+    AToA(4, 3, 3, 1);  AToA(4, 2, 3, 2);  AToA(4, 1, 3, 3);
+    tempToA(t1, 4, 3);  tempToA(t2, 4, 2);  tempToA(t3, 4, 1);
+}
+
+//rotate cw 90 degrees
+void rot1(int kind){ //1:up 2:front 3:right
     CUBE_NOW_ROTATE_ANGEL = 0.0;
+    switch( kind ){
+        case 1:
+            WHICH_ROTATION = 1;
+            break;
+        case 2:
+            WHICH_ROTATION = 2;
+            break;
+        case 3:
+            WHICH_ROTATION = 3;
+            break;
+        default:
+            break;
+    }
+    glutTimerFunc(30, a_90_degree, 0.0);
+    switch( kind ){
+    case 1:
+        a_up_90_degree_color_change();
+        break;
+    case 2:
+        a_up_90_degree_color_change();
+        a_up_90_degree_color_change();
+        break;
+    case 3:
+        a_up_90_degree_color_change();
+        a_up_90_degree_color_change();
+        a_up_90_degree_color_change();
+        break;
+    default:
+        break;
+    }
+}
+
+//rotate cw 180 degrees
+void rot2(int kind){ //1:up 2:front 3:right
+    CUBE_NOW_ROTATE_ANGEL = 0.0;
+    switch( kind ){
+        case 1:
+            WHICH_ROTATION = 4;
+            break;
+        case 2:
+            WHICH_ROTATION = 5;
+            break;
+        case 3:
+            WHICH_ROTATION = 6;
+            break;
+        default:
+            break;
+    }
+    glutTimerFunc(30, a_90_degree, 0.0);
     glutTimerFunc(30, a_90_degree, 0.0);
 }
-void U2(){
-    CUBE_NOW_ROTATE_ANGEL = 0.0;
-    glutTimerFunc(30, a_90_degree, 0.0);
-    glutTimerFunc(30, a_90_degree, 0.0);
-}
-void U3(){
+
+//rotate ccw 90 degrees
+void rot3(int kind){ //1:up 2:front 3:right
     CUBE_PER_ROTATE_ANGEL = -CUBE_PER_ROTATE_ANGEL;
     CUBE_NOW_ROTATE_ANGEL = 0.0;
+    switch( kind ){
+        case 1:
+            WHICH_ROTATION = 7;
+            break;
+        case 2:
+            WHICH_ROTATION = 8;
+            break;
+        case 3:
+            WHICH_ROTATION = 9;
+            break;
+        default:
+            break;
+    }
     glutTimerFunc(30, a_90_degree, 0.0);
 }
+
 
 
 void keyboard(unsigned char key,int x,int y){
     switch(key){
         case 'a':
-            U1();
+            rot1(1);
             cout<<'U1'<<endl;
             break;
         case 'b':
-            U2();
+            rot1(2);
             cout<<'U2'<<endl;
             break;
         case 'c':
-            U3();
+            rot1(3);
             cout<<'U3'<<endl;
             break;
         case 'd':
+            rot2(1);
             cout<<'F1'<<endl;
             break;
         case 'e':
+            rot2(2);
             cout<<'F2'<<endl;
             break;
         case 'f':
+            rot2(3);
             cout<<'F3'<<endl;
             break;
         case 'g':
+            rot3(1);
             cout<<'R1'<<endl;
             break;
         case 'h':
+            rot3(2);
             cout<<'R2'<<endl;
             break;
         case 'i':
+            rot3(3);
             cout<<'R3'<<endl;
             break;
         default:
