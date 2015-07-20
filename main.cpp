@@ -132,17 +132,19 @@ void draw_MagicCube(int ope,float angel){
                 glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
                 draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
                 glTranslatef(0.0, 0.0, A_CUBE_LEN);
-                draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[1][4], COLOR_WHITE);
+                draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE);
             glPopMatrix();
 
-            glTranslatef(A_CUBE_LEN, -A_CUBE_LEN, 0.0);
-            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
-            glTranslatef(0.0, 0.0, -A_CUBE_LEN);
-            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
-            glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
-            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
-            glTranslatef(0.0, 0.0, A_CUBE_LEN);
-            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+            glPushMatrix();
+                glTranslatef(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
+                glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
+                glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
+                glTranslatef(0.0, 0.0, A_CUBE_LEN);
+                draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+            glPopMatrix();
             break;
         case 2:  //F cw
             break;
@@ -165,10 +167,6 @@ void display(void){
         typeXYZ();
     glPopMatrix();
 
-
-
-
-
     glPushMatrix();
     glRotatef(SPIN, 0.0, 1.0, 0.0);
     //----------------------------------------
@@ -180,8 +178,6 @@ void display(void){
         draw_MagicCube(1, CUBE_NOW_ROTATE_ANGEL);
     glPopMatrix();
 
-
-
     //----------------------------------------
     glPopMatrix();
     glFlush();
@@ -190,15 +186,48 @@ void display(void){
 
 
 
+
+
+
+
+void a_90_degree(int angel){
+    glutPostRedisplay();
+    angel += CUBE_PER_ROTATE_ANGEL;
+    CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
+    if( fabs(angel)<=90.0 ){
+        glutTimerFunc(30, a_90_degree, angel);
+    }
+}
+
+
+void U1(){
+    CUBE_NOW_ROTATE_ANGEL = 0.0;
+    glutTimerFunc(30, a_90_degree, 0.0);
+}
+void U2(){
+    CUBE_NOW_ROTATE_ANGEL = 0.0;
+    glutTimerFunc(30, a_90_degree, 0.0);
+    glutTimerFunc(30, a_90_degree, 0.0);
+}
+void U3(){
+    CUBE_PER_ROTATE_ANGEL = -CUBE_PER_ROTATE_ANGEL;
+    CUBE_NOW_ROTATE_ANGEL = 0.0;
+    glutTimerFunc(30, a_90_degree, 0.0);
+}
+
+
 void keyboard(unsigned char key,int x,int y){
     switch(key){
         case 'a':
+            U1();
             cout<<'U1'<<endl;
             break;
         case 'b':
+            U2();
             cout<<'U2'<<endl;
             break;
         case 'c':
+            U3();
             cout<<'U3'<<endl;
             break;
         case 'd':
@@ -223,7 +252,6 @@ void keyboard(unsigned char key,int x,int y){
             break;
     }
 }
-
 
 
 int main(int argc, char** argv){

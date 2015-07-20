@@ -43,8 +43,8 @@ GLfloat COLOR_OF_CUBE[9][4][4];
 void init(void){
     glClearColor(1.0, 1.0, 1.0, 0.0);
     glShadeModel(GL_SMOOTH);
-    glClearDepth(1.0);
     glEnable(GL_DEPTH_TEST);
+    glClearDepth(1.0);
     glDepthFunc(GL_LESS);
     glFrontFace(GL_CCW);
     glCullFace(GL_BACK);
@@ -94,7 +94,7 @@ void reshape(int w, int h){
     glViewport (0, 0,  t, t);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-100, 100, -100, 100, 0.0, 200);
+    glOrtho(-100.0, 100.0, -100.0, 100.0, 1.1, 200.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(40.0, 40.0, 100.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
