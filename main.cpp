@@ -112,7 +112,7 @@ void draw_MagicCube(int ope,float angel){
             glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
             draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
             glTranslatef(0.0, 0.0, A_CUBE_LEN);
-            draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE);
+            draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][3], COLOR_WHITE);
         glPopMatrix();
 
         glPushMatrix();
@@ -187,10 +187,10 @@ void AToA(int x1, int y1, int x2, int y2){ // move color(x1,y1) -> color(x2,y2)
 void a_up_90_degree_color_change(){
     float t1[4], t2[4], t3[4];
     ATotemp(1, 1, t1);  ATotemp(1, 2, t2);  ATotemp(1, 3, t3);
-    AToA(2, 3, 1, 1);  AToA(2, 2, 1, 2);  AToA(2, 1, 1, 3);
-    AToA(3, 3, 2, 1);  AToA(3, 2, 2, 2);  AToA(3, 1, 2, 3);
-    AToA(4, 3, 3, 1);  AToA(4, 2, 3, 2);  AToA(4, 1, 3, 3);
-    tempToA(t1, 4, 3);  tempToA(t2, 4, 2);  tempToA(t3, 4, 1);
+    AToA(4, 3, 1, 1);  AToA(4, 2, 1, 2);  AToA(4, 1, 1, 3);
+    AToA(3, 3, 4, 1);  AToA(3, 2, 4, 2);  AToA(3, 1, 4, 3);
+    AToA(2, 3, 3, 1);  AToA(2, 2, 3, 2);  AToA(2, 1, 3, 3);
+    tempToA(t1, 2, 3);  tempToA(t2, 2, 2);  tempToA(t3, 2, 1);
 }
 
 void a_90_degree(int angel){
@@ -202,6 +202,7 @@ void a_90_degree(int angel){
     }
     else{
         a_up_90_degree_color_change();
+        CUBE_NOW_ROTATE_ANGEL = 0.0;
         glutPostRedisplay();
     }
 }
@@ -224,7 +225,7 @@ void rot1(int kind){ //1:up 2:front 3:right
         default:
             break;
     }
-    glutTimerFunc(30, a_90_degree, 0.0);
+    glutTimerFunc(10, a_90_degree, 0.0);
 }
 
 //rotate cw 180 degrees
