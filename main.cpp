@@ -102,7 +102,7 @@ void draw_a_cube(float c_up[4],float c_down[4],float c_front[4],float c_back[4],
 
 void draw_MagicCube(int ope,float angel){
 
-    if( ope==1 || ope==2 || ope==3 ){
+    if( ope==1){
         glPushMatrix();
             glRotatef(angel, 0.0, 1.0, 0.0);
             glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
@@ -193,20 +193,121 @@ void a_up_90_degree_color_change(){
     tempToA(t1, 2, 3);  tempToA(t2, 2, 2);  tempToA(t3, 2, 1);
 }
 
+void a_front_90_degree_color_change(){
+    float t1[4], t2[4], t3[4];
+    ATotemp(1, 1, t1);  ATotemp(1, 2, t2);  ATotemp(1, 3, t3);
+    AToA(4, 1, 1, 1);  AToA(4, 3, 1, 2);  AToA(4, 2, 1, 3);
+    AToA(8, 1, 4, 1);  AToA(8, 3, 4, 2);  AToA(8, 2, 4, 3);
+    AToA(5, 1, 8, 1);  AToA(5, 3, 8, 2);  AToA(5, 2, 8, 3);
+    tempToA(t1, 5, 1);  tempToA(t2, 5, 3);  tempToA(t3, 5, 2);
+}
+
+void a_right_90_degree_color_change(){
+    float t1[4], t2[4], t3[4];
+    ATotemp(1, 1, t1);  ATotemp(1, 2, t2);  ATotemp(1, 3, t3);
+    AToA(5, 2, 1, 1);  AToA(5, 1, 1, 2);  AToA(5, 3, 1, 3);
+    AToA(6, 2, 5, 1);  AToA(6, 1, 5, 2);  AToA(6, 3, 5, 3);
+    AToA(2, 2, 6, 1);  AToA(2, 1, 6, 2);  AToA(2, 3, 6, 3);
+    tempToA(t1, 2, 2);  tempToA(t2, 2, 1);  tempToA(t3, 2, 3);
+}
+
+
 void a_90_degree(int angel){
     glutPostRedisplay();
     angel += CUBE_PER_ROTATE_ANGEL;
     CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
-    if( fabs(angel)<90.0 ){
+    if( angel<90.0 ){
         glutTimerFunc(10, a_90_degree, angel);
     }
     else{
-        a_up_90_degree_color_change();
-        CUBE_NOW_ROTATE_ANGEL = 0.0;
-        glutPostRedisplay();
+        switch(WHICH_ROTATION){
+            case 1:
+                a_up_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            case 2:
+                a_up_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            case 3:
+                a_up_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            default:
+                break;
+        }
     }
 }
-
+void a_180_degree(int angel){
+    glutPostRedisplay();
+    angel += CUBE_PER_ROTATE_ANGEL;
+    CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
+    if( angel<180.0 ){
+        glutTimerFunc(10, a_180_degree, angel);
+    }
+    else{
+        switch(WHICH_ROTATION){
+            case 1:
+                a_up_90_degree_color_change();
+                a_up_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            case 2:
+                a_front_90_degree_color_change();
+                a_front_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            case 3:
+                a_right_90_degree_color_change();
+                a_right_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            default:
+                break;
+        }
+    }
+}
+void a_minus_90_degree(int angel){
+    glutPostRedisplay();
+    angel -= CUBE_PER_ROTATE_ANGEL;
+    CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
+    if( fabs(angel)<90.0 ){
+        glutTimerFunc(10, a_minus_90_degree, angel);
+    }
+    else{
+        switch(WHICH_ROTATION){
+            case 1:
+                a_up_90_degree_color_change();
+                a_up_90_degree_color_change();
+                a_up_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            case 2:
+                a_front_90_degree_color_change();
+                a_front_90_degree_color_change();
+                a_front_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            case 3:
+                a_right_90_degree_color_change();
+                a_right_90_degree_color_change();
+                a_right_90_degree_color_change();
+                CUBE_NOW_ROTATE_ANGEL = 0.0;
+                glutPostRedisplay();
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 //rotate cw 90 degrees
 void rot1(int kind){ //1:up 2:front 3:right
@@ -230,42 +331,41 @@ void rot1(int kind){ //1:up 2:front 3:right
 
 //rotate cw 180 degrees
 void rot2(int kind){ //1:up 2:front 3:right
+
     CUBE_NOW_ROTATE_ANGEL = 0.0;
     switch( kind ){
         case 1:
-            WHICH_ROTATION = 4;
+            WHICH_ROTATION = 1;
             break;
         case 2:
-            WHICH_ROTATION = 5;
+            WHICH_ROTATION = 2;
             break;
         case 3:
-            WHICH_ROTATION = 6;
+            WHICH_ROTATION = 3;
             break;
         default:
             break;
     }
-    glutTimerFunc(30, a_90_degree, 0.0);
-    glutTimerFunc(30, a_90_degree, 0.0);
+    glutTimerFunc(10, a_180_degree, 0.0);
 }
 
 //rotate ccw 90 degrees
 void rot3(int kind){ //1:up 2:front 3:right
-    CUBE_PER_ROTATE_ANGEL = -CUBE_PER_ROTATE_ANGEL;
     CUBE_NOW_ROTATE_ANGEL = 0.0;
     switch( kind ){
         case 1:
-            WHICH_ROTATION = 7;
+            WHICH_ROTATION = 1;
             break;
         case 2:
-            WHICH_ROTATION = 8;
+            WHICH_ROTATION = 2;
             break;
         case 3:
-            WHICH_ROTATION = 9;
+            WHICH_ROTATION = 3;
             break;
         default:
             break;
     }
-    glutTimerFunc(30, a_90_degree, 0.0);
+    glutTimerFunc(10, a_minus_90_degree, 0.0);
 }
 
 
