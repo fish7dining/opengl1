@@ -10,6 +10,7 @@ using namespace std;
 bool mouseLeftDown;
 float mouseX, mouseY;
 float AngleX, AngleY;
+float lastAngleX, lastAngleY;
 
 
 
@@ -209,6 +210,8 @@ void display(){
     glPushMatrix();
     glRotatef(AngleY, 0.0, 1.0, 0.0);
     glRotatef(AngleX, 1.0, 0.0, 0.0);
+    //glRotatef(AngleY, sin(lastAngleY), cos(lastAngleY), 0.0);
+    //glRotatef(AngleX, sin(lastAngleX), cos(lastAngleX), 0.0);
     //----------------------------------------
 
     glPushMatrix();
@@ -310,6 +313,7 @@ void a_90_degree(int angel){
         }
     }
 }
+
 void a_180_degree(int angel){
     glutPostRedisplay();
     angel += CUBE_PER_ROTATE_ANGEL;
@@ -342,6 +346,7 @@ void a_180_degree(int angel){
         }
     }
 }
+
 void a_minus_90_degree(int angel){
     glutPostRedisplay();
     angel -= CUBE_PER_ROTATE_ANGEL;
@@ -501,6 +506,8 @@ void mouse(int button, int state, int x, int y){
 
 void mouseMotion(int x, int y){
     if(mouseLeftDown){
+        lastAngleX = AngleX;
+        lastAngleY = AngleY;
         AngleY += (x-mouseX);
         AngleX += (y-mouseY);
         mouseX = x;

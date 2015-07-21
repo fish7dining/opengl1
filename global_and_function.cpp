@@ -17,7 +17,7 @@ GLfloat COLOR_RED[4] = {1.0, 0.0, 0.0, 1.0};
 GLfloat COLOR_YELLOW[4] = {1.0, 1.0, 0.0, 1.0};
 GLfloat COLOR_BLUE[4] = {0.0, 0.0, 1.0, 1.0};
 GLfloat COLOR_GREEN[4] = {0.0, 1.0, 0.0, 1.0};
-GLfloat COLOR_ORANGE[4] = {1.0, 0.647, 0.0, 1.0};
+GLfloat COLOR_ORANGE[4] = {1.0, 0.498, 0.141, 1.0};
 GLfloat AXIS_LEN = 80.0;
 float PI = 3.1415926;
 float n_pyramid_r = 4.0;
@@ -85,7 +85,7 @@ void reshape(int w, int h){
     glOrtho(-100.0, 100.0, -100.0, 100.0, 1.1, 200.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(40.0, 40.0, 100.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt(0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
 void spinDisplay(void){
