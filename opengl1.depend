@@ -23,19 +23,19 @@
 	"iostream"
 	"math.h"
 
-1437449332 source:d:\github\opengl1\global_and_function.cpp
+1437467972 source:d:\github\opengl1\global_and_function.cpp
 	"function.h"
 	"global.h"
 	"GL/glut.h"
 	"iostream"
 	"math.h"
 
-1437445747 d:\github\opengl1\function.h
+1437470886 d:\github\opengl1\function.h
 
-1437396403 d:\github\opengl1\global.h
+1437467789 d:\github\opengl1\global.h
 	"GL/glut.h"
 
-1437456395 source:d:\github\opengl1\main.cpp
+1437470391 source:d:\github\opengl1\main.cpp
 	"GL/glut.h"
 	"global.h"
 	"function.h"
