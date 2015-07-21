@@ -7,6 +7,10 @@
 using namespace std;
 
 
+bool mouseLeftDown;
+float mouseX, mouseY;
+float AngleX, AngleY;
+
 
 
 void draw_a_cube(float c_up[4],float c_down[4],float c_front[4],float c_back[4],float c_left[4],float c_right[4]){
@@ -101,7 +105,6 @@ void draw_a_cube(float c_up[4],float c_down[4],float c_front[4],float c_back[4],
 }
 
 void draw_MagicCube(int ope,float angel){
-
     if( ope==1){
         glPushMatrix();
             glRotatef(angel, 0.0, 1.0, 0.0);
@@ -126,11 +129,75 @@ void draw_MagicCube(int ope,float angel){
             draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
         glPopMatrix();
     }
+    else if( ope==2 ){
+        glPushMatrix();
+            glRotatef(angel, 0.0, 0.0, -1.0);
+            glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+            draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
+            glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+            draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
+        glPopMatrix();
+        glPushMatrix();
+            glRotatef(angel, 0.0, 0.0, -1.0);
+            glTranslatef(-A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][3], COLOR_WHITE);
+        glPopMatrix();
+
+        glPushMatrix();
+            glRotatef(angel, 0.0, 0.0, -1.0);
+            glTranslatef(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
+            glTranslatef(-A_CUBE_LEN, 0.0, 0.0);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
+        glPopMatrix();
+        glPushMatrix();
+            glRotatef(angel, 0.0, 0.0, -1.0);
+            glTranslatef(-A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+        glPopMatrix();
+    }
+    else{
+        glPushMatrix();
+            glRotatef(angel, -1.0, 0.0, 0.0);
+            glTranslatef(A_CUBE_LEN/2, A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_OF_CUBE[1][2], COLOR_WHITE, COLOR_OF_CUBE[1][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[1][3]);
+            glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+            draw_a_cube(COLOR_OF_CUBE[2][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[2][1], COLOR_WHITE, COLOR_OF_CUBE[2][3]);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(-A_CUBE_LEN/2, A_CUBE_LEN/2, -A_CUBE_LEN/2);
+            draw_a_cube(COLOR_OF_CUBE[3][2], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[3][1], COLOR_OF_CUBE[3][3], COLOR_WHITE);
+            glTranslatef(0.0, 0.0, A_CUBE_LEN);
+            draw_a_cube(COLOR_OF_CUBE[4][2], COLOR_WHITE, COLOR_OF_CUBE[4][1], COLOR_WHITE, COLOR_OF_CUBE[4][3], COLOR_WHITE);
+        glPopMatrix();
+
+        glPushMatrix();
+            glRotatef(angel, -1.0, 0.0, 0.0);
+            glTranslatef(A_CUBE_LEN/2, -A_CUBE_LEN/2, A_CUBE_LEN/2);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[5][2], COLOR_OF_CUBE[5][1], COLOR_WHITE, COLOR_WHITE, COLOR_OF_CUBE[5][3]);
+            glTranslatef(0.0, 0.0, -A_CUBE_LEN);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[6][2], COLOR_WHITE, COLOR_OF_CUBE[6][1], COLOR_WHITE, COLOR_OF_CUBE[6][3]);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(-A_CUBE_LEN/2, -A_CUBE_LEN/2, -A_CUBE_LEN/2);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[7][2], COLOR_WHITE, COLOR_OF_CUBE[7][1], COLOR_OF_CUBE[7][3], COLOR_WHITE);
+            glTranslatef(0.0, 0.0, A_CUBE_LEN);
+            draw_a_cube(COLOR_WHITE, COLOR_OF_CUBE[8][2], COLOR_OF_CUBE[8][1], COLOR_WHITE, COLOR_OF_CUBE[8][3], COLOR_WHITE);
+        glPopMatrix();
+    }
 }
 
 
 
-//å¼€å§‹ç»˜åˆ¶
+//¿ªÊ¼»æÖÆ
 void display(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -140,7 +207,8 @@ void display(){
     glPopMatrix();
 
     glPushMatrix();
-    glRotatef(SPIN, 0.0, 1.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
     //----------------------------------------
 
     glPushMatrix();
@@ -211,13 +279,14 @@ void a_right_90_degree_color_change(){
     tempToA(t1, 2, 2);  tempToA(t2, 2, 1);  tempToA(t3, 2, 3);
 }
 
+int SPEED = 10;
 
 void a_90_degree(int angel){
     glutPostRedisplay();
     angel += CUBE_PER_ROTATE_ANGEL;
     CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
     if( angel<90.0 ){
-        glutTimerFunc(10, a_90_degree, angel);
+        glutTimerFunc(SPEED, a_90_degree, angel);
     }
     else{
         switch(WHICH_ROTATION){
@@ -227,12 +296,12 @@ void a_90_degree(int angel){
                 glutPostRedisplay();
                 break;
             case 2:
-                a_up_90_degree_color_change();
+                a_front_90_degree_color_change();
                 CUBE_NOW_ROTATE_ANGEL = 0.0;
                 glutPostRedisplay();
                 break;
             case 3:
-                a_up_90_degree_color_change();
+                a_right_90_degree_color_change();
                 CUBE_NOW_ROTATE_ANGEL = 0.0;
                 glutPostRedisplay();
                 break;
@@ -246,7 +315,7 @@ void a_180_degree(int angel){
     angel += CUBE_PER_ROTATE_ANGEL;
     CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
     if( angel<180.0 ){
-        glutTimerFunc(10, a_180_degree, angel);
+        glutTimerFunc(SPEED, a_180_degree, angel);
     }
     else{
         switch(WHICH_ROTATION){
@@ -276,9 +345,9 @@ void a_180_degree(int angel){
 void a_minus_90_degree(int angel){
     glutPostRedisplay();
     angel -= CUBE_PER_ROTATE_ANGEL;
-    CUBE_NOW_ROTATE_ANGEL += CUBE_PER_ROTATE_ANGEL;
+    CUBE_NOW_ROTATE_ANGEL -= CUBE_PER_ROTATE_ANGEL;
     if( fabs(angel)<90.0 ){
-        glutTimerFunc(10, a_minus_90_degree, angel);
+        glutTimerFunc(SPEED, a_minus_90_degree, angel);
     }
     else{
         switch(WHICH_ROTATION){
@@ -326,7 +395,7 @@ void rot1(int kind){ //1:up 2:front 3:right
         default:
             break;
     }
-    glutTimerFunc(10, a_90_degree, 0.0);
+    glutTimerFunc(SPEED, a_90_degree, 0.0);
 }
 
 //rotate cw 180 degrees
@@ -346,7 +415,7 @@ void rot2(int kind){ //1:up 2:front 3:right
         default:
             break;
     }
-    glutTimerFunc(10, a_180_degree, 0.0);
+    glutTimerFunc(SPEED, a_180_degree, 0.0);
 }
 
 //rotate ccw 90 degrees
@@ -365,54 +434,80 @@ void rot3(int kind){ //1:up 2:front 3:right
         default:
             break;
     }
-    glutTimerFunc(10, a_minus_90_degree, 0.0);
+    glutTimerFunc(SPEED, a_minus_90_degree, 0.0);
 }
 
 
 
 void keyboard(unsigned char key,int x,int y){
+    cout<<"q w e : U1 U2 U3"<<endl;
+    cout<<"a s d : F1 F2 F3"<<endl;
+    cout<<"z x c : R1 R2 R3"<<endl;
     switch(key){
-        case 'a':
+        case 'q':
+            cout<<"U1"<<endl;
             rot1(1);
-            cout<<'U1'<<endl;
             break;
-        case 'b':
-            rot1(2);
-            cout<<'U2'<<endl;
-            break;
-        case 'c':
-            rot1(3);
-            cout<<'U3'<<endl;
-            break;
-        case 'd':
+        case 'w':
+            cout<<"U2"<<endl;
             rot2(1);
-            cout<<'F1'<<endl;
             break;
         case 'e':
-            rot2(2);
-            cout<<'F2'<<endl;
-            break;
-        case 'f':
-            rot2(3);
-            cout<<'F3'<<endl;
-            break;
-        case 'g':
+            cout<<"U3"<<endl;
             rot3(1);
-            cout<<'R1'<<endl;
             break;
-        case 'h':
+        case 'a':
+            cout<<"F1"<<endl;
+            rot1(2);
+            break;
+        case 's':
+            cout<<"F2"<<endl;
+            rot2(2);
+            break;
+        case 'd':
+            cout<<"F3"<<endl;
             rot3(2);
-            cout<<'R2'<<endl;
             break;
-        case 'i':
+        case 'z':
+            cout<<"R1"<<endl;
+            rot1(3);
+            break;
+        case 'x':
+            cout<<"R2"<<endl;
+            rot2(3);
+            break;
+        case 'c':
+            cout<<"R3"<<endl;
             rot3(3);
-            cout<<'R3'<<endl;
             break;
+        case 27:
+            cout<<"esc"<<endl;
+            init2();
+            glutPostRedisplay();
         default:
             break;
     }
 }
 
+void mouse(int button, int state, int x, int y){
+    mouseX = x,  mouseY = y;
+    if( button==GLUT_LEFT_BUTTON ){
+        if( state==GLUT_DOWN )
+            mouseLeftDown = true;
+        else if( state==GLUT_UP )
+            mouseLeftDown = false;
+    }
+}
+
+void mouseMotion(int x, int y){
+    if(mouseLeftDown){
+        AngleY += (x-mouseX);
+        AngleX += (y-mouseY);
+        mouseX = x;
+        mouseY = y;
+    }
+    glutPostRedisplay();
+}
 
 
 int main(int argc, char** argv){
@@ -425,6 +520,7 @@ int main(int argc, char** argv){
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutMouseFunc(mouse);
+    glutMotionFunc(mouseMotion);
     glutKeyboardFunc(keyboard);
     glutMainLoop();
     return 0;

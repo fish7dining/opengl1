@@ -4,14 +4,14 @@
 
 
 
-void init(void);  //åˆå§‹åŒ–
-void mouse(int button, int state, int x, int y);  //é¼ æ ‡æ“ä½œ
-void keyboard(unsigned char key,int x,int y);  //é”®ç›˜
-void reshape(int w,int h);  //çª—å£æ”¹å˜
-void spinDisplay(void);  //æ—‹è½¬
-void draw_n_pyramid(int n);  //ç”»ç«‹é”¥ä½“
-void xyzAxis(void);  //ç”»ä¸‰ç»´åæ ‡è½´
-void typeXYZ();  //ç”»ä¸‰ç»´åæ ‡ç³»XYZæ ‡è¯­
+void init(void);  //³õÊ¼»¯
+//void mouse(int button, int state, int x, int y);  //Êó±ê²Ù×÷
+void keyboard(unsigned char key,int x,int y);  //¼üÅÌ
+void reshape(int w,int h);  //´°¿Ú¸Ä±ä
+void spinDisplay(void);  //Ğı×ª
+void draw_n_pyramid(int n);  //»­Á¢×¶Ìå
+void xyzAxis(void);  //»­ÈıÎ¬×ø±êÖá
+void typeXYZ();  //»­ÈıÎ¬×ø±êÏµXYZ±êÓï
 void init2(void);
 void q1(int x,int y,float color[4]);
 void cube_rotate_Display(void);

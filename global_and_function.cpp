@@ -8,7 +8,7 @@ using namespace std;
 
 
 /*
-    å…¨å±€å˜é‡å®šä¹‰å¤„
+    È«¾Ö±äÁ¿¶¨Òå´¦
 */
 GLfloat SPIN = 0.0;
 GLfloat COLOR_BLACK[4] = {0.0, 0.0, 0.0, 1.0};
@@ -40,7 +40,7 @@ GLfloat COLOR_OF_CUBE[9][4][4];
 
 
 /*
-    å…¨å±€å‡½æ•°å®šä¹‰å¤„
+    È«¾Öº¯Êı¶¨Òå´¦
 */
 
 void init(void){
@@ -55,7 +55,7 @@ void init(void){
     init2();
 }
 
-//ç»™æŸä¸ªè§’å—çš„æŸä¸ªæ–¹å‘èµ‹å€¼ä¸Šé¢œè‰²ï¼ˆæ•°æ®ç»“æ„ï¼‰
+//¸øÄ³¸ö½Ç¿éµÄÄ³¸ö·½Ïò¸³ÖµÉÏÑÕÉ«£¨Êı¾İ½á¹¹£©
 void q1(int x,int y,float color[4]){
     for(int i=0;i<4;++i)
         COLOR_OF_CUBE[x][y][i] = color[i];
@@ -72,22 +72,7 @@ void init2(void){
     q1(8,1,COLOR_RED); q1(8,2,COLOR_GREEN); q1(8,3,COLOR_WHITE);
 }
 
-void mouse(int button, int state, int x, int y){
-    switch (button) {
-        case GLUT_LEFT_BUTTON:
-            if (state == GLUT_DOWN)
-            glutIdleFunc(spinDisplay);
-            break;
-        case GLUT_MIDDLE_BUTTON:
-            break;
-        case GLUT_RIGHT_BUTTON:
-            if (state == GLUT_DOWN)
-                glutIdleFunc(NULL);
-            break;
-        default:
-            break;
-    }
-}
+
 
 
 
